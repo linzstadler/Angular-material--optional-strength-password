@@ -9,17 +9,17 @@
                 <input type="text" matInput class="form-control" formControlName="newPassword"
                        placeholder="new password">
 
-                <mat-error *ngIf="f.newPassword.errors && (f.newPassword.dirty || f.newPassword.touched)">
-                    <div *ngIf="f.newPassword.errors.invalidPassword === 'required'">
+                <mat-error *ngIf="getControl.newPassword.errors && (getControl.newPassword.dirty || getControl.newPassword.touched)">
+                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'required'">
                         required
                     </div>
-                    <div *ngIf="f.newPassword.errors.invalidPassword === 'digit'">
+                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'digit'">
                         digit
                     </div>
-                    <div *ngIf="f.newPassword.errors.invalidPassword === 'uppercase'">
+                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'uppercase'">
                         uppercase
                     </div>
-                    <div *ngIf="f.newPassword.errors.invalidPassword === 'numeric'">
+                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'numeric'">
                         nyumber
                     </div>
                 </mat-error>
@@ -30,12 +30,12 @@
                 <input type="text" matInput class="form-control" formControlName="confirm_password"
                        placeholder="{confirm password">
 
-                <mat-error class="text-danger" *ngIf="f.confirm_password.invalid && (f.confirm_password.dirty || f.confirm_password.touched)">
-                    <div *ngIf="f.confirm_password.errors.required">
+                <mat-error class="text-danger" *ngIf="getControl.confirm_password.invalid && (getControl.confirm_password.dirty || getControl.confirm_password.touched)">
+                    <div *ngIf="getControl.confirm_password.errors.required">
                         require
                     </div>
 
-                    <div *ngIf="f.confirm_password.errors.matching">
+                    <div *ngIf="getControl.confirm_password.errors.matching">
                         asda
                     </div>
                 </mat-error>
