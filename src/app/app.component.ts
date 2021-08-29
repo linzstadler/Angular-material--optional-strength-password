@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'Angular9App';
+  title = 'Optional strength password';
 
 }
