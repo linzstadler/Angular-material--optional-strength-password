@@ -1,0 +1,50 @@
+<form [formGroup]="changePassword">
+    <div class="row">
+        <div class="col px-0">
+            <mat-form-field class="full-with py-2">
+                <input type="text" matInput class="form-control" formControlName="password"
+                       placeholder="password">
+            </mat-form-field>
+            <mat-form-field class="full-with py-2">
+                <input type="text" matInput class="form-control" formControlName="newPassword"
+                       placeholder="new password">
+
+                <mat-error *ngIf="f.newPassword.errors && (f.newPassword.dirty || f.newPassword.touched)">
+                    <div *ngIf="f.newPassword.errors.invalidPassword === 'required'">
+                        required
+                    </div>
+                    <div *ngIf="f.newPassword.errors.invalidPassword === 'digit'">
+                        digit
+                    </div>
+                    <div *ngIf="f.newPassword.errors.invalidPassword === 'uppercase'">
+                        uppercase
+                    </div>
+                    <div *ngIf="f.newPassword.errors.invalidPassword === 'numeric'">
+                        nyumber
+                    </div>
+                </mat-error>
+            </mat-form-field>
+            <app-strength-password [value] = "changePassword.controls.newPassword.value"></app-strength-password>
+            <mat-form-field class="full-with py-2">
+
+                <input type="text" matInput class="form-control" formControlName="confirm_password"
+                       placeholder="{confirm password">
+
+                <mat-error class="text-danger" *ngIf="f.confirm_password.invalid && (f.confirm_password.dirty || f.confirm_password.touched)">
+                    <div *ngIf="f.confirm_password.errors.required">
+                        require
+                    </div>
+
+                    <div *ngIf="f.confirm_password.errors.matching">
+                        asda
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </div>
+
+    <div>
+        <button mat-raised-button class="btn--profile text-info bg-transparent" [disabled]="!changePassword.valid" (click)="changePasswordHandler()">save</button>
+    </div>
+</form>
