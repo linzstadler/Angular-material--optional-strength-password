@@ -11,17 +11,13 @@ export class StrengthPasswordComponent implements OnInit, OnChanges {
   public strength = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
     if (changes.value) {
       this.strength = StrengthPasswordValidator.setIndicatorValues(changes.value.currentValue);
     }
-
-
   }
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

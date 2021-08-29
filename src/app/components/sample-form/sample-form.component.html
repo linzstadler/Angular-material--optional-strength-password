@@ -1,50 +1,66 @@
-<form [formGroup]="changePassword">
-    <div class="row">
-        <div class="col px-0">
-            <mat-form-field class="full-with py-2">
-                <input type="text" matInput class="form-control" formControlName="password"
-                       placeholder="password">
-            </mat-form-field>
-            <mat-form-field class="full-with py-2">
-                <input type="text" matInput class="form-control" formControlName="newPassword"
-                       placeholder="new password">
+<div class="formArea">
+    <h2>Optional strength password</h2>
+    <ol>
+        <li>
+            At least 8 letters
+        </li>
+        <li>
+            At least one uppercase letter
+        </li>
+        <li>
+            At least one number
+        </li>
+    </ol>
+    <p>* Optional rule: special character</p>
+    <form [formGroup]="changePassword">
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="old_password"
+                   placeholder="Enter your old password">
 
-                <mat-error *ngIf="getControl.newPassword.errors && (getControl.newPassword.dirty || getControl.newPassword.touched)">
-                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'required'">
-                        required
-                    </div>
-                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'digit'">
-                        digit
-                    </div>
-                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'uppercase'">
-                        uppercase
-                    </div>
-                    <div *ngIf="getControl.newPassword.errors.invalidPassword === 'numeric'">
-                        nyumber
-                    </div>
-                </mat-error>
-            </mat-form-field>
-            <app-strength-password [value] = "changePassword.controls.newPassword.value"></app-strength-password>
-            <mat-form-field class="full-with py-2">
+            <mat-error *ngIf="getControl.old_password.invalid && (getControl.old_password.dirty || getControl.old_password.touched)">
+                <div *ngIf="getControl.old_password.errors.required">
+                    Old password: required
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width mt-1">
+            <input type="text" matInput formControlName="new_password"
+                   placeholder="Enter your new password">
 
-                <input type="text" matInput class="form-control" formControlName="confirm_password"
-                       placeholder="{confirm password">
+            <mat-error *ngIf="getControl.new_password.errors && (getControl.new_password.dirty || getControl.new_password.touched)">
+                <div *ngIf="getControl.new_password.errors.required">
+                    New password: required
+                </div>
+                <div *ngIf="getControl.new_password.errors.invalidPassword === 'digit'">
+                    New password: at least 8 characters
+                </div>
+                <div *ngIf="getControl.new_password.errors.invalidPassword === 'uppercase'">
+                    New password: at least one uppercase letter
+                </div>
+                <div *ngIf="getControl.new_password.errors.invalidPassword === 'numeric'">
+                    New password: at least one number
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <app-strength-password [value] = "changePassword.controls.new_password.value"></app-strength-password>
+        <mat-form-field class="full-width mt-1">
 
-                <mat-error class="text-danger" *ngIf="getControl.confirm_password.invalid && (getControl.confirm_password.dirty || getControl.confirm_password.touched)">
-                    <div *ngIf="getControl.confirm_password.errors.required">
-                        require
-                    </div>
+            <input type="text" matInput formControlName="confirm_password"
+                   placeholder="Confirm your new password">
 
-                    <div *ngIf="getControl.confirm_password.errors.matching">
-                        asda
-                    </div>
-                </mat-error>
-            </mat-form-field>
+            <mat-error class="text-danger" *ngIf="getControl.confirm_password.invalid && (getControl.confirm_password.dirty || getControl.confirm_password.touched)">
+                <div *ngIf="getControl.confirm_password.errors.required">
+                    Confirm password: required
+                </div>
+
+                <div *ngIf="getControl.confirm_password.errors.matching">
+                    Confirm password: confirm password and new password is not match
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <div class="mt-1">
+            <button mat-raised-button class="btn--profile text-info bg-transparent" [disabled]="!changePassword.valid" (click)="changePasswordHandler()">Save</button>
         </div>
-
-    </div>
-
-    <div>
-        <button mat-raised-button class="btn--profile text-info bg-transparent" [disabled]="!changePassword.valid" (click)="changePasswordHandler()">save</button>
-    </div>
-</form>
+    </form>
+        
+</div>

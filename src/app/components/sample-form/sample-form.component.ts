@@ -17,8 +17,10 @@ export class SampleFormComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder) {
         this.changePassword = this.formBuilder.group({
-            password: new FormControl('', Validators.required),
-            newPassword: new FormControl('', [
+            old_password: new FormControl('', [
+                Validators.required
+            ]),
+            new_password: new FormControl('', [
                 Validators.required,
                 Validators.compose([PasswordValidator.validPassword(true)]),
             ]),
@@ -30,7 +32,7 @@ export class SampleFormComponent implements OnInit {
             ]),
 
         }, {
-            validators: ConfirmedPasswordValidator('newPassword', 'confirm_password')
+            validators: ConfirmedPasswordValidator('new_password', 'confirm_password')
         });
     }
 
